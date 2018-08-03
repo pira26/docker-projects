@@ -1,7 +1,7 @@
 'use strict';
 
-import express from "express";
-import * as config from "./config";
+const express = require("express");
+const config = require("./config");
 
 // Init express
 const app = express();
@@ -12,7 +12,8 @@ const connection = mysql.createConnection({
   host: config.get('db.host'),
   user: config.get('db.user'),
   password: config.get('db.password'),
-  database: config.get('db.name')
+  database: config.get('db.name'),
+  port: config.get('db.port')
 });
 
 connection.connect((err) => {

@@ -1,7 +1,7 @@
 'use strict';
 
-import convict from 'convict';
-import * as fs from 'fs';
+const  convict = require('convict');
+const fs = require('fs');
 
 // Define a schema
 const config = convict({
@@ -42,6 +42,12 @@ const config = convict({
             format: String,
             default: 'password',
             env: 'MYSQL_PASSWORD'
+        },
+        port: {
+            doc: "Database port",
+            format: 'port',
+            default: 3308,
+            env: 'MYSQL_PORT'
         }
     },
     redis: {

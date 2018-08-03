@@ -22,7 +22,7 @@ services:
   redis:
     image: redis:alpine
 
-  app:
+  web:
     build:
       dockerfile: Dockerfile
       context: .

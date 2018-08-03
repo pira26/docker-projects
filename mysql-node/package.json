@@ -12,11 +12,8 @@
     "license": "ISC",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "clean": "rm -rf build && mkdir build",
-        "build-babel": "babel -d ./build ./src -s",
-        "build": "npm run clean && npm run build-babel",
-        "start": "node ./build/server.js",
-        "dev": "nodemon src/server.js --exec babel-node"
+        "start": "node ./src/server.js",
+        "dev": "nodemon ./src/server.js"
     },
     "dependencies": {
         "convict": "^4.3.2",
@@ -25,8 +22,6 @@
         "redis": "^2.8.0"
     },
     "devDependencies": {
-        "babel-cli": "^6.26.0",
-        "babel-preset-env": "^1.7.0",
         "nodemon": "^1.18.3"
     }
 }
