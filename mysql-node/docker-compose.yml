@@ -2,6 +2,7 @@ version: '3'
 services:
   mysql-dev:
     image: mysql
+    command: mysqld --default-authentication-plugin=mysql_native_password
     environment:
       MYSQL_HOST: ${MYSQL_HOST}
       MYSQL_USER: ${MYSQL_USER}
@@ -26,7 +27,7 @@ services:
     build:
       dockerfile: Dockerfile
       context: .
-    command: npm run dev
+    command: sh -c "sleep 2.5; npm run dev"
     environment:
       MYSQL_HOST: ${MYSQL_HOST}
       MYSQL_USER: ${MYSQL_USER}

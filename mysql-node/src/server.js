@@ -9,16 +9,16 @@ const app = express();
 // Init MySQL Connection
 const mysql = require('mysql');
 const connection = mysql.createConnection({
-  host: config.get('db.host'),
-  user: config.get('db.user'),
-  password: config.get('db.password'),
-  database: config.get('db.name'),
-  port: config.get('db.port')
+  host: config.mysqlHost,
+  user: config.user,
+  password: config.password,
+  database: config.db,
+  port: config.portDb
 });
 
 connection.connect((err) => {
     if (err) {
-        console.error('error during db conneciton', err);
+        console.error('error during db connection', err);
     } else {
         console.log("You're connected to your db !");
     }
@@ -26,7 +26,7 @@ connection.connect((err) => {
 
 // Init redis connection
 const redis = require("redis"),
-      client = redis.createClient({ host: config.get('redis.host') });
+      client = redis.createClient({ host: config.redisHost });
 
 client.on("error", (err) => {
   console.error("Error " + err);
@@ -63,6 +63,6 @@ app.get("/redis", (req, res) => {
 
 // Init API listening
 
-app.listen(3000, () => {
-  console.log("Example app listening on port 3000!");
+app.listen(config.port, () => {
+  console.log(`Example app listening on port ${config.port}!`);
 });
