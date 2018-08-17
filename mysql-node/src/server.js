@@ -37,15 +37,19 @@ client.set("foo", "bar", redis.print);
 // Init test routes
 
 app.get("/", (req, res) => {
+  console.log("url route '/'");
   res.send(`Hello World from : ${req.connection.localAddress}`);
 });
 
 app.get("/db", (req, res) => {
-  connection.query('SELECT 1 + 1 AS solution', (error, results, fields) => {
+  connection.query('SELECT * FROM test', (error, results, fields) => {
     if (error) {
       console.error('error in /db', error);
+    } else {
+      console.log('results -> ', results);
+      console.log('fieds ==> ', fields);
+      return res.json(results);
     }
-    return res.json(results);
   });  
 })
 
