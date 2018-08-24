@@ -10,5 +10,6 @@ module.exports = {
   'db': `${process.env.MYSQL_DATABASE}`,
   'portDb': `${process.env.MYSQL_PORT}`,
   'redisHost': `${process.env.REDIS_HOST}`,
+  'appHost': `${process.env.APP_HOST}`,
   'secret': `${process.env.SECRET}`
 }

@@ -6,6 +6,10 @@ const config = require("./config");
 // Init express
 const app = express();
 
+// Init redis connection
+const redis = require("redis");
+const client = redis.createClient({ host: config.redisHost });
+
 // Init MySQL Connection
 const mysql = require('mysql');
 const connection = mysql.createConnection({
@@ -24,25 +28,21 @@ connection.connect((err) => {
     }
 });
 
-// Init redis connection
-const redis = require("redis"),
-      client = redis.createClient({ host: config.redisHost });
-
-client.on("error", (err) => {
-  console.error("Error " + err);
-});
+// client.on("error", (err) => {
+//   console.error("Error " + err);
+// });
 
 client.set("foo", "bar", redis.print);
 
 // Init test routes
 
 app.get("/", (req, res) => {
-  console.log("url route '/'");
+  console/log("url route '/'");
   res.send(`Hello World from : ${req.connection.localAddress}`);
 });
 
 app.get("/db", (req, res) => {
-  connection.query('SELECT * FROM test', (error, results, fields) => {
+  connection.query(`SELECT * FROM Test`, (error, results, fields) => {
     if (error) {
       console.error('error in /db', error);
     } else {
@@ -57,11 +57,12 @@ app.get("/redis", (req, res) => {
   client.get('foo', (err, reply) => {
     if (err) {
       return res.status(500).json(err);
+    } else {
+      res.json({
+        key: 'foo',
+        value: reply
+      });
     }
-    res.json({
-      key: 'foo',
-      value: reply
-    });
   })
 });
 
