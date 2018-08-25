@@ -16,9 +16,10 @@
         "dev": "nodemon ./src/server.js"
     },
     "dependencies": {
-        "convict": "^4.3.2",
+        "body-parser": "^1.18.3",
         "dotenv": "^6.0.0",
         "express": "^4.16.3",
+        "morgan": "^1.9.0",
         "mysql": "^2.16.0",
         "redis": "^2.8.0"
     },
